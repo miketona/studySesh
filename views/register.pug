@@ -1,0 +1,16 @@
+extends layout.pug
+block content
+    section#register
+        if (errorMessage)
+            h4.errorMessage= errorMessage
+        form(action='/register', method='post', onsubmit ="return submitted(this)")
+            label(for="username") Username 
+            input(type="text" name = 'username')
+            br
+            label(for="password") Password
+            input(type="password" name = 'password' required)
+            br
+            label(for="") Confirm passsword
+            input(type="password" name = 'confirmPassword' required)
+            br
+            button(type='submit' name= 'submitButton' class = 'changeDeckButton' required) Submit   

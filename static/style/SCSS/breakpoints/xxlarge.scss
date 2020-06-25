@@ -1,0 +1,38 @@
+.body {
+    .index {
+        background-color: red !important;
+    }
+}
+
+//changeDeck
+#changeDeck {
+    .deckContainer {
+        form {
+            width: 20%;
+            margin: 10px !important;
+        }
+    }
+}
+
+//index
+#index {
+    #optionHolder {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .optionCard {
+            width: 20%;
+            margin-bottom: 80px;
+            height: 254px;
+            position: relative;
+
+            a {
+                position: absolute;
+                bottom: 0;
+            }
+        }
+    }
+}
+
+header {}

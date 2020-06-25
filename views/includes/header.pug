@@ -1,0 +1,12 @@
+header
+       h1 Study Sesh!
+       br
+       .navBar
+              ul
+                     if !loggedOut
+                             form(action = '/logout' method = 'post')
+                                          button(type = submit) logout
+                     if !indexPage
+                            div#backToIndex.fakeButton
+                                   a(href="/") Back to homepage
+                            

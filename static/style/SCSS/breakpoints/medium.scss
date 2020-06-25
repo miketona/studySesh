@@ -1,0 +1,170 @@
+//font sizes
+h1 {
+    font-size: 45px;
+}
+
+h2 {
+    font-size: 34px;
+}
+
+h3 {
+    font-size: 30px;
+}
+
+h4 {
+    font-size: 28px;
+}
+
+
+p,
+input,
+label,
+li,
+a {
+    font-size: 22px;
+}
+
+button,
+textarea {
+    font-size: 20px;
+}
+
+//footer
+footer {
+    p {
+        font-size: 14px;
+    }
+}
+
+//index page
+#index {
+    .optionCard {
+        margin-bottom: 30px;
+    }
+
+    .fakeButton {
+        a {
+            padding: 15px 0px;
+        }
+    }
+}
+
+//login page
+#login {
+    flex-direction: column;
+
+    form {
+
+        label {
+            font-size: 22px;
+        }
+
+        input {
+            width: 80%;
+        }
+
+        button {
+            padding: 10px 0px;
+        }
+    }
+
+    p {
+        text-align: center;
+    }
+
+    .fakeButton {
+        a {
+            padding: 10px 0px;
+        }
+    }
+}
+
+//createDeck
+#createDeck {
+    form {
+        flex-wrap: wrap;
+
+        .break {
+            flex-basis: 100%;
+            height: 0;
+        }
+
+        .sameRow {
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        button {
+            margin-top: 30px;
+            width: 60%;
+            padding: 10px 0px;
+        }
+    }
+
+}
+
+//study page
+#quiz {
+    p {
+        font-size: 22px;
+    }
+
+    i {
+        font-size: 30px !important;
+    }
+}
+
+//edit page
+#edit {
+
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+    .deleteOption {
+        width: 48%;
+        margin: 10px 1px;
+    }
+
+    .deleteButton {
+        padding: 20px 40px;
+    }
+
+    a {
+        padding: 10px 0px;
+    }
+}
+
+//create card page
+#createCard {
+    form {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        input {
+            margin-bottom: 15px;
+            width: 300px;
+        }
+
+        textarea {
+            width: 300px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            width: 200px;
+            margin-left: auto;
+            padding: 20px 10px;
+        }
+    }
+}

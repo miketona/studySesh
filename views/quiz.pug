@@ -1,0 +1,45 @@
+extends layout.pug
+block content
+  section#quiz
+    // if the quiz is not over.
+    if cardName
+      .quizInProgress
+        p.score='Current Score: '+currentScore 
+        h2=cardName
+        h3#popUpMessage.errorMessage
+        p= 'Question: '+question
+        //give user the change to see the answer?
+        form(action="/quiz" method = 'post' onsubmit= "return quizAnswer(this)")
+          //input(type="hidden" value= answer)
+          input(type="hidden" value= totalPoints name='totalPoints')
+          input(id='hint' type="hidden" value= hint name='hint')
+          input(type="hidden" value= id name='id')
+          input(type="hidden" value= currentScore name='currentScore')
+          input(id='data' type="hidden" value= data name='data')
+          input(type="hidden" value= correct name='correct')
+          input(id='answer' type="hidden" value= answer name='answer')
+          .bound
+            label(for="usersAnswer") Answer: 
+            input(type="text" name = 'userAnswer' autofocus) 
+          button(type='submit' name= 'submitButton') Next question
+      //else display end results
+    else     
+      .result
+        p.score= 'Final Score: '+finalScore + '/' +totalPoints
+        each card in cards
+          if (card.correct===true)
+           
+            ul.true
+                h4=card.cardName
+                li='Question: ' + card.question
+                li='Answer: ' + card.answer
+                li='Your answer: '+card.userAnswer
+                p Correct <i class="far fa-check-circle"></i>
+          else
+            ul.false
+                h4=card.cardName
+                li='Question: ' + card.question
+                li='Answer: ' + card.answer
+                li='Your answer: '+card.userAnswer
+                p Incorrect <i class="far fa-times-circle"></i>
+    

@@ -1,0 +1,32 @@
+extends layout.pug
+block content
+ section#edit
+    if currentDeck
+        h2='Current Deck: ' + currentDeck
+        br
+        p.description= description
+        //display list of cards names and allow for deleting
+        if cardNamesList
+            ul
+                each name in cardNamesList
+                   //for each card in the deck, show the card name and allow the user to delete the card.
+                   li.deleteOption
+                        form(action='/deleteCard' method='post')
+                            input( hidden type='text', name='cardName' value = name)
+                            p#useAsParentNode= name
+                            //this button will call a js function that creates a pop up warning the user that deletion is permenant.
+                            //If the user clicks yes, that button is used as the form submission.
+                            button(id='deleteButton' class = 'deleteButton' type='button' onclick = 'deleteDeck(this)' name='deleteButton') Delete    
+        br
+        .buttonContainer
+            .fakeButton
+                a(href='createCard') create a new card
+            br
+            .fakeButton
+                a(href='changeDeck') Select a different deck
+    else
+        p please got to
+        .fakeButton
+         a(href = 'createDeck') and create a new deck
+
+        //Allow for changing of collection

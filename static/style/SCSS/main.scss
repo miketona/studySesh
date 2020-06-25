@@ -1,0 +1,30 @@
+//google fonts, variables, and mixins
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,300&display=swap');
+@import 'mixins.scss';
+@import 'variables.scss';
+//import style sheets
+//phone/default
+@import "breakpoints/small.scss";
+
+//tablet
+@media only screen and (min-width: 768px) {
+  @import "breakpoints/medium.scss";
+}
+
+//laptop
+@media only screen and (min-width: 1100px) {
+  @import "breakpoints/large.scss";
+}
+
+//larger screen
+@media only screen and (min-width: 1500px) {
+  @import "breakpoints/xlarge.scss";
+}
+
+//very big monitors
+@media only screen and (min-width: 2000px) {
+  @import "breakpoints/xxlarge.scss";
+}

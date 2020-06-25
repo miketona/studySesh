@@ -1,0 +1,12 @@
+extends layout.pug
+block content
+    section#createDeck
+        form(action='/createDeck' method='post' onsubmit ="return submitted(this)")
+            .sameRow
+                label Please enter the name of the new deck
+                input(required type='text' name='deckName')
+                label Please enter the description of your new deck
+                textarea(required rows='10' cols='30' name='deckDescription')
+            button(type='submit' name= 'submitButton') Submit    
+
+            //make button onclick go to function, ok button inside function = form button submit

@@ -1,0 +1,36 @@
+extends layout.pug
+block content
+ section#index
+    if username
+     h2.name Welcome #{username}!
+    if deckExists
+      h3= 'Current Deck:' + ' ' +  deckExists
+      br
+    #optionHolder
+      if deckExists
+        .optionCard
+          .optionInner
+            h4 Quiz yourself!
+            p  If you would like to quiz yourself using the current deck click on the study button.
+          .fakeButton
+            a(href='/quiz') Study!
+      .optionCard
+        .optionInner
+          h4 Create something new!
+        .fakeButton
+          a(href='/createDeck') Create a new deck!
+      .optionCard
+        .optionInner
+          h4 Change it up!
+          //img
+          p 
+        .fakeButton
+          a(href='changeDeck') Select a different deck
+      .optionCard
+        .optionInner
+          //img
+          p Want to add or delete cards? After selecting a deck, click this button.
+        .fakeButton
+          a(href='/edit') Edit current deck deck!
+
+      
