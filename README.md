@@ -1,5 +1,5 @@
 # studySesh
-Study Sesh is a CRUD web application. This application allows users to create their own flash cards, study them, and receive a grade based on their performance. https://study-sesh.herokuapp.com/
+Study Sesh is a CRUD web application. This application allows users to create their own flash cards, study them, and receive a grade based on their performance. This web application can be found at  https://study-sesh.herokuapp.com/.
 
 # Tools Used
 
