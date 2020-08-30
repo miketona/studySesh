@@ -4,7 +4,8 @@ Once a user is logged in they can create Flash Card Decks and populate each deck
 After creating a deck, the user can proceed to study the deck. The application gives each user 3 attempts on incorrect answers and logs correct/incorrect questions. 
 The app will then display the logged information on a review page after the test in completed.
 
-#Tools used
+#Tools Used
+
 *Node JS
 *Express JS
 *Mongo DB
