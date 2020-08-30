@@ -35,4 +35,12 @@
     }
 }
 
+.inputAndLabel {
+    width: 20% !important;
+
+    &:not(:nth-of-type(4n)) {
+        margin-right: 5%;
+    }
+}
+
 header {}

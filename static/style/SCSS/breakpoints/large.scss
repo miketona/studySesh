@@ -3,6 +3,15 @@ h1 {
 }
 
 header {
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+
+  svg {
+    position: absolute;
+    top: 10px;
+    right: 40.5%;
+  }
 
   .fakeButton,
   button {
@@ -70,7 +79,8 @@ footer {
 //index
 #index {
   h2 {
-    margin: 90px 0px 70px;
+    text-align: left;
+    margin: 90px 0px 70px 5%;
     background-color: white;
   }
 
@@ -173,6 +183,60 @@ footer {
       margin-top: 50px;
       width: 20%;
       margin-left: auto;
+    }
+  }
+}
+
+//createCard
+
+#createCard {
+  width: 80%;
+  margin: 0px auto;
+
+  form {
+    width: 100%;
+    flex-direction: row;
+    align-items: flex-start;
+
+    .inputAndLabel {
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+      width: 30%;
+
+      &:not(:nth-of-type(3n)) {
+        margin-right: 5%;
+      }
+
+      &:last-of-type {
+        width: 55%;
+        margin: 0px auto;
+      }
+
+      input {
+        width: 100%;
+      }
+
+      textarea {
+        width: 100%;
+        margin-bottom: 30px;
+      }
+    }
+
+    input {
+      margin-bottom: 30px;
+    }
+
+    label {
+      height: 20px;
+    }
+
+    button {
+      width: 50%;
+      margin: 30px auto;
+      padding: 20px 10px;
+
+
     }
   }
 }

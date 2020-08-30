@@ -148,23 +148,33 @@ footer {
 #createCard {
     form {
         flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-start;
+
+        .inputAndLabel {
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            width: 100%;
+        }
 
         input {
-            margin-bottom: 15px;
+            margin-bottom: 30px;
             width: 300px;
+        }
+
+        label {
+            max-height: 20px;
         }
 
         textarea {
             width: 300px;
-            margin-bottom: 15px;
+            margin-bottom: 30px;
         }
 
         button {
-            width: 200px;
-            margin-left: auto;
+            width: 400px;
+            margin: 30px auto;
             padding: 20px 10px;
+
         }
     }
 }
