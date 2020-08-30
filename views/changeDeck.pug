@@ -2,12 +2,16 @@ extends layout.pug
 block content
     section#changeDeck      
         if (listOfUsersCollections.length > 0)
-            p Please click on the deck that you wish to change to
+            p Please click on the deck that you wish to change to. If you would like to delete the deck, then select the delete button inside of the box.
             .deckContainer
                 each name in listOfUsersCollections
                         form(action='/changeDeck', method='post', onsubmit ="return submitted(this)")
-                            input(hidden type='text', name='deckName' value = name)
-                            button(type='submit' name= 'submitButton' class = 'changeDeckButton')= name    
+                            input( hidden type='text', name='deckName' value = name)
+                            p=name
+                                .buttonHolder
+                                    button(type='submit' name= 'submitButton' class = 'changeDeckButton') select deck
+                                    button(type='button' name= 'submitButton' class = 'deleteButton' onclick='deleteDeck(this)') delete
+                            
         else
             p There seem to be no decks inside of your account. Please
             .fakeButton#needDeckFirst

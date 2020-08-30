@@ -1,17 +1,18 @@
 //Global variables, used for the quiz portion of the app.
-//If quiz is being taken, store and hide values from chrome developer window
 let correctAnswer;
 let currentAttempts = 3;
+let hint;
 let data;
-
 //main function to handle all client side js that is not event driven
 const main = function () {
   if (document.location.pathname == "/login") {
     document.getElementById("backToIndex").style.display = "none";
   }
+  //If quiz is being taken, store and hide values from chrome developer window
   if (document.getElementById("answer")) {
     const answerElement = document.getElementById("answer");
     correctAnswer = answer.value;
+    hint = document.getElementById("hint").value;
     answerElement.value = "hidden";
     document.getElementById("hint").value = "hidden";
     data = document.getElementById("data").value;
@@ -23,7 +24,62 @@ const main = function () {
   ) {
     document.getElementById("footerParagraph").display = "none";
   }
+  //set onhover animation functions
+
+  //call on page load functions
+  setTimeout(() => {
+    onloadAnimation();
+  }, 200);
 };
+//onload animation functions
+const onloadAnimation = function () {
+  anime({
+    targets: [".changeDeckButton", ".deleteButton"],
+    translateY: [
+      { value: 50, duration: 500 },
+      { value: 0, duration: 800 },
+    ],
+    rotate: "2turn",
+  });
+  const title = document.querySelector("h1");
+  title.style.color = "white";
+  anime({
+    targets: title,
+    loop: false,
+    translateY: [
+      { value: 50, duration: 500 },
+      { value: 0, duration: 800 },
+    ],
+    color: "black",
+    rotate: "2turn",
+    direction: "alternate",
+    easing: "easeInOutSine",
+    duration: 100,
+  });
+
+  //disable back button while taking quiz. Additional precautions taken on back end
+  if (document.location.pathname.includes("/quiz")) {
+    history.pushState(null, null, location.href);
+    history.back();
+    history.forward();
+    window.onpopstate = function () {
+      history.go(1);
+    };
+  }
+
+  anime({
+    targets: "path",
+    strokeDashoffset: [anime.setDashoffset, 0],
+    easing: "easeInOutSine",
+    duration: 1500,
+    delay: function (el, i) {
+      return i * 250;
+    },
+    direction: "alternate",
+    loop: false,
+  });
+};
+
 //call main
 main();
 
@@ -54,6 +110,7 @@ const quizAnswer = function (myForm) {
   //allow for three attempts, if wrong echo out to user that it is wrong and let them know how many attempts they have left
   while (currentAttempts !== 0) {
     currentAttempts--;
+    console.log(currentAttempts);
     const usersAnswer = myForm.userAnswer.value
       .replace(/\s/g, "")
       .toLowerCase();
@@ -65,6 +122,8 @@ const quizAnswer = function (myForm) {
           "You got the answer wrong. You have " +
           currentAttempts +
           " attempts left.";
+        if (hint) message.innerHTML += "<br> Hint: " + hint;
+
         return false;
       }
     } else {
@@ -75,7 +134,6 @@ const quizAnswer = function (myForm) {
   document.getElementById("data").value = data;
   return true;
 };
-
 //handles deleting flash-card deck submissions. Disables double click and warns user that deletion is permanent
 const deleteDeck = function (clickedButton) {
   //disable double click
@@ -90,11 +148,11 @@ const deleteDeck = function (clickedButton) {
   no.type = "button";
   no.innerHTML = "NO";
   yes.innerHTML = "YES";
-  no.className = "noButton";
-  yes.className = "yesButton";
+  no.classList.add("noButton", "optionButton");
+  yes.classList.add("yesButton", "optionButton");
   message.className = "errorMessage";
   message.innerHTML =
-    "WARNING, this will permanently delete the card. Click YES to delete the card, or click NO to keep the card.";
+    "WARNING, this will permanently delete this object. Click YES to delete the object, or click NO to keep the object.";
   parentNode.appendChild(message);
   message.appendChild(no);
   message.appendChild(yes);
@@ -102,5 +160,11 @@ const deleteDeck = function (clickedButton) {
   no.onclick = () => {
     parentNode.removeChild(message);
     deleteButton.disabled = false;
+  };
+  //if changeDeck page, figure out what button was clicked and alter the action based on this. This will allow for me to use two separate post routes for one from.
+  yes.onclick = () => {
+    if (location.pathname == "/changeDeck") {
+      clickedButton.parentNode.parentNode.action = "/deleteDeck";
+    }
   };
 };

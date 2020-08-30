@@ -4,10 +4,13 @@ block content
     // if the quiz is not over.
     if cardName
       .quizInProgress
-        p.score='Current Score: '+currentScore 
-        h2=cardName
+        div.quizDiv
+          p.score='Current Score: '+currentScore 
+        div.quizDiv
+          h2=cardName
         h3#popUpMessage.errorMessage
-        p= 'Question: '+question
+        div.quizDiv
+         p= 'Question: '+question
         //give user the change to see the answer?
         form(action="/quiz" method = 'post' onsubmit= "return quizAnswer(this)")
           //input(type="hidden" value= answer)
@@ -18,6 +21,8 @@ block content
           input(id='data' type="hidden" value= data name='data')
           input(type="hidden" value= correct name='correct')
           input(id='answer' type="hidden" value= answer name='answer')
+          input(id='questionNumber' type="hidden" value= questionNumber name='questionNumber')
+
           .bound
             label(for="usersAnswer") Answer: 
             input(type="text" name = 'userAnswer' autofocus) 
@@ -30,16 +35,20 @@ block content
           if (card.correct===true)
            
             ul.true
-                h4=card.cardName
+                div.quizDiv
+                 h4=card.cardName
                 li='Question: ' + card.question
                 li='Answer: ' + card.answer
                 li='Your answer: '+card.userAnswer
-                p Correct <i class="far fa-check-circle"></i>
+                div.quizDiv
+                  p.bool Correct <i class="far fa-check-circle"></i>
           else
             ul.false
-                h4=card.cardName
+                div.quizDiv
+                 h4=card.cardName
                 li='Question: ' + card.question
                 li='Answer: ' + card.answer
                 li='Your answer: '+card.userAnswer
-                p Incorrect <i class="far fa-times-circle"></i>
+                div.quizDiv
+                  p.bool Incorrect <i class="far fa-times-circle"></i>
     

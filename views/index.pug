@@ -2,7 +2,8 @@ extends layout.pug
 block content
  section#index
     if username
-     h2.name Welcome #{username}!
+     .quizDiv
+      h2.name Welcome #{username}!
     if deckExists
       h3= 'Current Deck:' + ' ' +  deckExists
       br
@@ -31,6 +32,6 @@ block content
           //img
           p Want to add or delete cards? After selecting a deck, click this button.
         .fakeButton
-          a(href='/edit') Edit current deck deck!
+          a(href='/edit') Edit current deck!
 
       

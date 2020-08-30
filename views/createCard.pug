@@ -1,13 +1,18 @@
 extends layout.pug
 block content
     section#createCard
+        p.errorMessage=errorMessage
         form(action='/createCard', method='post' onsubmit ="return submitted(this)")
-            label Please enter the name of this card
-            input(required type='text', name='cardName')
-            label Please enter your question
-            textarea( cols="24" rows='10' required type='text', name='question')
-            label Please enter your Answer
-            input(required type='text', name='answer')
-            label Please enter your hint(optional)
-            input(type='text', name='hint')
+            .inputAndLabel
+                label Please enter the name of this card
+                input(required type='text', name='cardName')
+            .inputAndLabel
+                label Please enter your question
+                textarea( cols="24" rows='10' required type='text', name='question')
+            .inputAndLabel
+                label Please enter your Answer
+                input(required type='text', name='answer')
+            .inputAndLabel
+                label Please enter your hint(optional)
+                input(type='text', name='hint')
             button(type='submit', name= 'submitButton') Submit    

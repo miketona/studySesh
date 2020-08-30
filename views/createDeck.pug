@@ -1,6 +1,7 @@
 extends layout.pug
 block content
     section#createDeck
+        p.errorMessage=errorMessage
         form(action='/createDeck' method='post' onsubmit ="return submitted(this)")
             .sameRow
                 label Please enter the name of the new deck

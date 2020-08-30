@@ -5,7 +5,6 @@ const uriGet = require("../mongoFunctions/mongoUri");
 const uri = uriGet();
 const mongoFind = require("../mongoFunctions/mongoFindInDeck");
 const mongoGetDeckNames = require("../mongoFunctions/mongoFindAllDecks");
-const deleteCard = require("../mongoFunctions/mongoDeleteDoc");
 
 router.get("/edit", (req, res) => {
   const currentDeck = req.cookies.currentDeck;
@@ -18,6 +17,7 @@ router.get("/edit", (req, res) => {
       //assign deck description to variable and pass it to the template
       description = result[0].description;
       //assign card names to variable and pass it to the template
+      console.log(result);
       for (let i = 1; i < result.length; i++) {
         const element = result[i];
         cardNamesList.push(element.cardName);
@@ -30,20 +30,24 @@ router.get("/edit", (req, res) => {
 });
 
 //Render the page and have it display all of the decks that the user has created.
-router.get("/changeDeck", (req, res) => {
-  mongoGetDeckNames((result) => {
-    const listOfAllCollections = result;
-    //determine if the deck belongs to this user and send them to the template
-    let listOfUsersCollections = [];
-    listOfAllCollections.forEach((element, i) => {
-      if (element.name.includes(req.cookies.username + "-")) {
-        listOfUsersCollections.push(
-          element.name.replace(req.cookies.username + "-", "")
-        );
-      }
+router.get("/changeDeck", async (req, res) => {
+  if (req.cookies.username) {
+    mongoGetDeckNames((result) => {
+      const listOfAllCollections = result;
+      //determine if the deck belongs to this user and send them to the template
+      let listOfUsersCollections = [];
+      listOfAllCollections.forEach((element, i) => {
+        if (element.name.includes(req.cookies.username + "-")) {
+          listOfUsersCollections.push(
+            element.name.replace(req.cookies.username + "-", "")
+          );
+        }
+      });
+      res.render("changeDeck", { listOfUsersCollections });
     });
-    res.render("changeDeck", { listOfUsersCollections });
-  });
+  } else {
+    res.redirect("/login");
+  }
 });
 router.post("/changeDeck", (req, res) => {
   res.clearCookie("currentDeck");
@@ -51,12 +55,4 @@ router.post("/changeDeck", (req, res) => {
   res.redirect("/");
 });
 
-//delete a card
-router.post("/deleteCard", (req, res) => {
-  const username = req.cookies.username;
-  const currentDeck = username + "-" + req.cookies.currentDeck;
-  deleteCard(currentDeck, req.body.cardName, () => {
-    res.redirect("/edit");
-  });
-});
 module.exports = router;

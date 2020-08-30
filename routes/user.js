@@ -67,8 +67,9 @@ router.post("/register", (req, res, next) => {
             res.locals.loggedOut = true;
             res.redirect("/login");
           });
-        } catch {
+        } catch (error) {
           res.status(500).send();
+          next(error);
         }
       }
     });
@@ -85,7 +86,7 @@ router.get("/login", (req, res) => {
   }
 });
 //compare login credentials with database
-router.post("/login", (req, res) => {
+router.post("/login", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
   let errorMessage = "Incorrect Username and/or password please try again.";
@@ -115,7 +116,9 @@ router.post("/login", (req, res) => {
         res.locals.indexPage = true;
         res.render("login", { errorMessage });
       }
-    } catch {}
+    } catch (error) {
+      next(error);
+    }
   });
 });
 module.exports = router;
